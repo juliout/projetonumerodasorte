@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap');
 
 .baseColor{
-    color: #71265b;
+    color: var(--cor-principal);
 }
 .baseFont {
     font-family: 'Poppins', sans-serif;
@@ -28,7 +28,7 @@
     height: auto;
     
 }
-h1, h3 {
+h1 {
     
     font-size: 1.7rem;
 }
@@ -47,8 +47,7 @@ button {
     
     font-size: 0.8rem;
 }
-label {
-    
+label {    
     font-size: 0.85rem;
     font-weight: 700;
 }

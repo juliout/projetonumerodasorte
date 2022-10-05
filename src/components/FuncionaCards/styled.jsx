@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+const pColor = '#3eb54e'
+const cardColor = '#cffcde'
+const h1Color = '#095e57'
+
 export const FuncionaA = styled.a`
     display: flex;
     flex-direction: column;
@@ -22,12 +26,12 @@ export const FuncionaA = styled.a`
         width: 35px;
         height: 35px;
         
-        background-color: #fccfed;
-        border: 10px solid #fccfed;
+        background-color: ${cardColor};
+        border: 10px solid ${cardColor};
         border-radius: 60px;
         margin: 20px 0 10px 0;
 
-        color: #71265b;
+        color: ${h1Color};
         font-weight: 700;
         font-family: 'Noto Sans', sans-serif;
     }

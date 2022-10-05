@@ -19,7 +19,7 @@ import {VscDebugStackframeDot} from 'react-icons/vsc'
 import {MdReportProblem} from 'react-icons/md'
 
 
-export default function Home() {
+export default function Homes() {
   const [modalDescadastrar, setModalDescadastrar] = useState(false)
   const [modalReportar , setModalReportar] = useState(false)
 

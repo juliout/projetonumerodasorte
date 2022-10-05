@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+const pColor = '#3eb54e'
+
 export const ListDiv = styled.div`
     
             display: flex;
@@ -31,8 +33,8 @@ export const ListDiv = styled.div`
 
             h3{
                 font-size: 1rem;
-                color: #858585;
-                font-weight: 400;
+                color: ${p=> p.colorx === false ? '#858585' : pColor };
+                font-weight: ${p=> p.colorx === false ? 400 : 700 };
             }
             
             .arrowIcon {

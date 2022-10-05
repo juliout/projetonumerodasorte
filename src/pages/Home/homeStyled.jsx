@@ -3,8 +3,8 @@ import styled from "styled-components";
 const pColor = '#3eb54e'
 const h1Color = '#095e57'
 const borderColor = '#3fb54f'
-const cardColor = '#cffcde'
 const fBtnColor = '#ffbb28'
+const silverColor = '#838383'
 
 export const BannerDiv = styled.div`
     
@@ -61,12 +61,12 @@ export const ComoFuncionaDiv = styled.div`
         .funcionaTop {
             h1 {
                 width:19rem;
-                color: #71265b;
-                border-bottom: 5px #71265b solid;
+                color: ${pColor};
+                border-bottom: 5px ${borderColor} solid;
                 margin-bottom: 25px;
             }
             p {
-                color: #71265b;
+                color: ${silverColor};
                 font-weight: 700;
                 font-size: 1rem;
                 margin-bottom: 20px;
@@ -86,66 +86,6 @@ export const ComoFuncionaDiv = styled.div`
             
             margin: 0 auto;
             
-            .funcionaCard {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: space-evenly;
-                
-
-                width: 250px;
-                height: 350px;
-                margin: 0 10px;
-                margin-top: 25px;
-                
-                background-color: #f7f7f7;
-                
-                .cardN {
-                    
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-
-                    width: 35px;
-                    height: 35px;
-                    
-                    background-color: #fccfed;
-                    border: 10px solid #fccfed;
-                    border-radius: 60px;
-                    margin: 20px 0 10px 0;
-
-                    color: #71265b;
-                    font-weight: 700;
-                    font-family: 'Noto Sans', sans-serif;
-                }
-
-                .exclam {
-                    font-size: 1.2rem;
-                    color: #006f90;
-                    text-shadow: 1px 0px 3px #006f90;
-                }
-                p {
-                    width: 90%;
-                    max-width: 230px;
-                    font-size: 0.8rem;
-                    font-weight: 600;
-                    color: #919191;
-                    font-family: 'Poppins', sans-serif;
-                }
-
-                img {
-                    margin-top: auto;
-                    width: 70%;
-                    max-width: 200px;
-                    filter: grayscale(100%);
-	                filter: gray; /* IE */
-                    :hover {
-                        filter: grayscale(0%);
-	                    filter: gray; /* IE */
-                    }
-                }
-            }
-
         }
     }
 `
@@ -167,9 +107,9 @@ export const PerguntasDiv = styled.div`
         padding: 0 10px;
 
         h1{
-            border-bottom: 5px #71265b solid;
+            border-bottom: 5px ${borderColor} solid;
             width: 19rem;
-            color: #71265b;
+            color: ${pColor};
             margin-bottom: 20px;
         }
         .perguntasContainer {
@@ -192,7 +132,7 @@ export const IndicarBannerDiv = styled.div`
     align-items: center;
     justify-content: center;
 
-    background-image: url('./image/indicarbg.jpg');
+    background-image: url('./image/indicarbg.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
