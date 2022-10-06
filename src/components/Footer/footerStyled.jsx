@@ -1,7 +1,7 @@
 import styled from "styled-components";
-
+const pColor = '#3eb54e'
 export const FooterDiv = styled.footer`
-    background-color: black;
+    background-color: ${pColor};
     width: 100%;
     height: 60px;
     color: white;

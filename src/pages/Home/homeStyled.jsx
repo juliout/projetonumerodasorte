@@ -5,37 +5,212 @@ const h1Color = '#095e57'
 const borderColor = '#3fb54f'
 const fBtnColor = '#ffbb28'
 const silverColor = '#838383'
+const greenbtn = '#cce737'
+
 
 export const BannerDiv = styled.div`
     
     width: 100%;
-    height: 400px;
+    height: 350px;
     background-image: url('./image/bannernumeros.png');
     background-repeat: no-repeat;
-    background-size: 110%;
+    background-size: 110% 100%;
     background-position: center;
 
     .bannerMain {
         width: 100%;
         height: 100%;
         max-width: 1100px;
-
-        margin: 0 auto;
-        background-color: red;
+        padding: 5px;
         display: flex;
-        flex-direction: column;
         align-items: center;
-        .content {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            height: 420px;
-            margin-bottom: 5px;
-            background-color: red;
+        margin: 0 auto;
 
+        .left {
+
+            width: 70%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            h1 {
+                text-align: left;
+                font-size: 1.3em;
+                color: ${h1Color};
+                margin-bottom: 15px;
+            }
+        }
+
+        .divselection {
+            width: 100%;
+            height: 70%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .leftOne {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 55%;
+            height: 100%;
+            padding-right: 5px;
+            border-right: 1px solid ${pColor};
+
+            h3{
+                display: flex;
+                font-size: 0.8rem;
+ 
+                text-align: center;
+                color: ${pColor};
+                font-weight: 700;
+                p {
+                    width: 25px;
+                    min-width: 25px;
+                    height: 25px;
+
+                    margin-right: 5px;
+                    background-color: ${pColor};
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    font-size: 1rem;
+                    color: white;
+                }
+            }
+        }
+        .divUls {
+            width: 85%;
+            display: flex;
+            padding: 5px;
+            margin-top: 10px;
+
+            ul {
+               width: 50%;
+            }
+            li {
+                align-items: center;
+                color: ${h1Color};
+                input {
+                    border-radius: 30%;
+                }
+            }
+        }
+        .receber {
+            width: 40%;
+            height: 110%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h3{
+                display: flex;
+                font-size: 0.8em;
+
+                align-items : center;
+                text-align: left;
+                color: ${pColor};
+                font-weight: 700;
+                p {
+                    width: 25px;
+                    height: 25px;
+                    margin-right: 15px;
+                    background-color: ${pColor};
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    font-size: 1rem;
+                    color: white;
+                }
+            }
+            .redesSelect {
+                display: flex;
+                justify-content: space-around;
+                width: 80%;
+                margin-top: 10px;
+            }
+            .cardRede {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                width: 30%;
+                label{
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                img {
+                    width: 80%;
+                }
+                input[type=radio]{
+                    width: 17px;
+                    height: 17px;
+                    cursor: pointer;
+                }
+            }
+            .redeDado {
+                width: 75%;
+                max-width: 200px;
+                height: 37px;
+                margin: 10px 0;
+                border-radius: 10px;
+                border: 1px solid black;
+                text-align: center;
+               box-shadow: 1px 1px black;
+            }
+            .termosdiv {
+                width: 80%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                label {
+                    margin-left: 5px;
+                    font-size: 0.7rem;
+                    a {
+                        font-size: 0.7rem;
+                    }
+                }
+                input {
+                    border-radius: 40px;
+                }
+            }
+            .cadastrarbtn {
+                background-color: ${fBtnColor};
+                width: 75%;
+                max-width: 200px;
+                height: 40px;
+                border-radius: 7px;
+                font-weight: 900;
+                box-shadow: 1px 1px black;
+                margin-top: 10px;
             }
 
         }
+
+        .right {
+
+            width: 30%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+
+            .selo{
+                position: absolute;
+                z-index: 10;
+                
+            }
+            .zap {
+                width: 60%;
+                transform: translateY(50px);
+                margin-left: 40px;
+            }
+        }
+
+
+    }
 
 `
 
@@ -150,7 +325,7 @@ export const IndicarBannerDiv = styled.div`
         flex-direction: column;
         align-items: left;
         justify-content: center;
-        color: white;
+        
 
         width: 50%;
         min-width: 200px;
@@ -159,6 +334,7 @@ export const IndicarBannerDiv = styled.div`
         
         h1{
             font-size: 1.4rem;
+            color: ${h1Color};
         }
 
         button{
@@ -175,14 +351,14 @@ export const IndicarBannerDiv = styled.div`
             margin-top: 10px;
             border-radius: 13px;
 
-            background-color: #ad39b6;
+            background-color: ${pColor};
             color: white;
             
             .shareIcon {
                 width: 20px;
                 height: 20px;
                 margin-left: 10px;
-                fill: #71265b;
+                fill: ${greenbtn};
             }
         }
 
@@ -236,18 +412,19 @@ export const RestInfoDiv = styled.div`
             width: 100%;
             height: 140px;
             
-            border-bottom: 5px #71265b solid;
+            border-bottom: 5px ${pColor} solid;
 
             .list {
                 display: flex;
                 align-items: center;
-                justify-content: space-around;
+                justify-content: space-between;
                 width: 100%;
                 height: 30%;
-                max-width: 700px;
+                max-width: 1100px;
 
                 .hidden {
-                    display: none;
+                    display: flex;
+                    opacity: 0;
                 }
 
                 .hiddenmenu {
@@ -260,13 +437,13 @@ export const RestInfoDiv = styled.div`
                     display: flex;
                     align-items: center;
                     width: 100%;
+                    max-width: 200px;
                     justify-content: space-around;
                 }
 
                 .restLogo {
-                    max-width: 110px;
+                    max-width: 150px;
                     height: 20px;
-                    margin: 0 20px;
                 }
 
 

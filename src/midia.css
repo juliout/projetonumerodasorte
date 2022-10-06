@@ -92,7 +92,7 @@
         font-weight: 700;
     }
     .hidden {
-        display: flex !important;
+        opacity: 1 !important;
     }
     .list>.restLogo{
         margin-top: 5px !important;

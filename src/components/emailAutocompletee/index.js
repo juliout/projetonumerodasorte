@@ -95,7 +95,6 @@ export default class Email extends Component {
     const { value, valid } = this.state;
 
     return valid ? (
-      <div className="rea-wrapper">
         <input
           {...props}
           autoCapitalize="none"
@@ -108,7 +107,6 @@ export default class Email extends Component {
             this.textHandler = input;
           }}
         />
-      </div>
     ) : (
       'Unable to render component! Please, Check out developer tools of your browser.'
     );

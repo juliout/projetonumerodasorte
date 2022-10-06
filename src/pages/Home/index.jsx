@@ -6,6 +6,7 @@ import BtnFlip from '../../components/BtnFlip'
 import LiPerguntas from '../../components/LiPerguntas'
 import Modal from '../../components/modal'
 import FuncionaCard from '../../components/FuncionaCards'
+import InputMask from 'react-input-mask'
 
 import {BannerDiv, ComoFuncionaDiv, PerguntasDiv, IndicarBannerDiv,RestInfoDiv} from './homeStyled'
 
@@ -20,12 +21,115 @@ import {MdReportProblem} from 'react-icons/md'
 
 
 export default function Home() {
+  const [plataform, setPlataform] = useState('whatsapp')
+
+
+
+
     return (
         <>
             <Header/>
             <BannerDiv>
                 <div className="bannerMain">
+                  <form className='left'>
+                    <h1>
+                      Receba gratuitamente no seu zap lembretes de encerramento 
+                      de apostas eo resultado dos sorteios das principais
+                      loterias brasileiras!
+                    </h1>
+                    <div className='divselection'>
+                      <div className='leftOne'>
+                          <h3> <p>1</p> Selecione os sorteios de quais loterias você
+                            quer receber o resultado por whatsapp:
+                          </h3>
 
+                          <div className="divUls">
+                            <ul>
+                              <li>
+                                <input type="checkbox" name="" id=""/>
+                                <label htmlFor="">Mega Sena</label>
+                              </li>
+                              <li>
+                                <input type="checkbox" name="" id=""/>
+                                <label htmlFor="">Lotofácil</label>
+                              </li>
+                              <li>
+                                <input type="checkbox" name="" id=""/>
+                                <label htmlFor="">Dupla Sena</label>
+                              </li>
+                              <li>
+                                <input type="checkbox" name="" id=""/>
+                                <label htmlFor="">Quina</label>
+                              </li>
+                              <li>
+                                <input type="checkbox" name="" id=""/>
+                                <label htmlFor="">Super sete</label>
+                              </li>
+                              <li>
+                                <input type="checkbox" name="" id=""/>
+                                <label htmlFor="">Timemania</label>
+                              </li>
+                            </ul>
+                            <ul>
+                              <li>
+                                <input type="checkbox" name="" id=""/>
+                                <label htmlFor="">Lotomania</label>
+                              </li>
+                              <li>
+                                <input type="checkbox" name="" id=""/>
+                                <label htmlFor="">Dia de sorte</label>
+                              </li>
+                              <li>
+                                <input type="checkbox" name="" id=""/>
+                                <label htmlFor="">Federal</label>
+                              </li>
+                              <li>
+                                <input type="checkbox" name="" id=""/>
+                                <label htmlFor="">Loteca</label>
+                              </li>
+                              <li>
+                                <input type="checkbox" name="" id=""/>
+                                <label htmlFor="">Milionária</label>
+                              </li>
+                            </ul>
+                          </div>
+                      </div>
+                      <div className='receber baseFont'>
+                        <h3><p>2</p> Como quer receber ?</h3>
+                        <div className='redesSelect'>
+                          <div className='cardRede' onClick={()=> {setPlataform('whatsapp')}}>
+                            <label htmlFor='whatsapp'><img src="/image/bwpp.png" alt="" htmlFor='rede'/></label>
+                            <input type="radio" name="social" id="whatsapp"  defaultChecked/>
+                          </div>
+                          <div className='cardRede' onClick={()=> {setPlataform('telegram')}}>
+                            <label htmlFor="telegram"><img src="/image/btele.png" alt="" /></label>
+                            <input type="radio" name="social" id="telegram" />
+                          </div>
+                          <div className='cardRede' onClick={()=> {setPlataform('e-mail')}}>
+                          <label htmlFor="e-mail"><img src="/image/bemail.png" alt="" /></label>
+                            <input type="radio" name="social" id="e-mail" />
+                          </div>
+                        </div>
+                        { 
+                          plataform === 'whatsapp' ?          
+                          <InputMask className='redeDado' mask={'(99)99999-9999'} name='socialContact' id='socialContact'/>               
+                          : plataform === 'telegram' ? <input type='text'className='redeDado' name='socialContact' id='socialContact'/>
+                          : plataform === 'e-mail' ?<Email type='email' className='redeDado' name='socialContact' id='socialContact'/>
+                          : null
+                        } 
+                        <div className='termosdiv'>
+                          <input type="checkbox" name="termos" id="termos" />
+                          <label htmlFor="termos"> Li e aceito os <a>termos de uso</a></label>
+                        </div>
+                      <button className='cadastrarbtn'> CADASTRAR </button>                
+                        
+                      </div>  
+                    </div>
+                  </form>
+                  <div className='right'>
+                      <img src="/image/gratis.png" alt="" className='selo'/>
+                      <img src="/image/telzap.png" alt="" className='zap'/>
+                  </div>
                 </div>
                 
             </BannerDiv>
@@ -80,9 +184,9 @@ export default function Home() {
                     <h1>Título texto alerta de Sorte exemplo</h1>
                     <button> Indicar Amigos <BsFillShareFill className='shareIcon'/></button>
                 </div>
-                {/* <div className="indicarRight">
-                    <img src="/image/indicarImg2.png" alt="conjuntodeimages" />
-                </div> */}
+                <div className="indicarRight">
+                    <img src="/image/indicarimg.png" alt="conjuntodeimages" />
+                </div>
                 </div>
             </IndicarBannerDiv>
             <PerguntasDiv>
@@ -109,61 +213,65 @@ export default function Home() {
                 </div>
             </PerguntasDiv>
             <RestInfoDiv>
-        <div className="restMain">
-          <div className="restTop">
-            <div className="list">
-              <span className='hiddenmenu baseColor'>Menu</span>
-              <div className='divLeft'>
-                <VscDebugStackframeDot className='baseColor hidden'/>
-                <BtnFlip className='textleft' text={'Quem somos'} />
-              </div>
-              <div className='divLeft'>
-                <VscDebugStackframeDot className='baseColor point'/>
-                <BtnFlip text={'Termos de uso'}/>
-              </div>
-              <div className='divLeft'>
-                <VscDebugStackframeDot className='baseColor point'/>
-                <BtnFlip text={'Fale conosco'}/>
-              </div>
-              <div className='divLeft'>
-                <VscDebugStackframeDot className='baseColor point'/>
-                <BtnFlip text={'Politica de privacidade'}/> 
-              </div> 
-            </div>
-            <div className="bot">
-              <span className='baseFont baseColor'> Apoio:</span>
-              <img src="/image/submarino.png" alt="logosubmarino" className='restLogo'/>
-              <img src="/image/americanas.png" alt="logoamericanas" className='restLogo'/>
-              <img src="/image/genera.png" alt="logogenera" className='restLogo'/>
-            </div>
-          </div>
-          <div className="restBot">
-            <div className='left'>
-              <div onClick={()=>{}}>
-                <RiUserUnfollowFill className='lIcon baseColor'/>
-                <BtnFlip text={'descadastrar'}/>
-              </div>
-              <div onClick={()=> {}}>
-                <MdReportProblem className='lIcon baseColor'/>
-                <BtnFlip text={'reportar erro'}/>
-              </div>
-            </div>
+              <div className="restMain">
+                <div className="restTop">
+                  <div className="list">
+                    <span className='hiddenmenu baseColor'>Menu</span>
+                    <div className='divLeft'>
+                      <VscDebugStackframeDot className='baseColor hidden'/>
+                      <BtnFlip className='textleft' text={'Quem somos'} />
+                    </div>
+                    <div className='divLeft'>
+                      <VscDebugStackframeDot className='baseColor point'/>
+                      <BtnFlip text={'Termos de uso'}/>
+                    </div>
+                    <div className='divLeft'>
+                      <VscDebugStackframeDot className='baseColor point'/>
+                      <BtnFlip text={'Calendário de Sorteios'}/>
+                    </div>
+                    <div className='divLeft'>
+                      <VscDebugStackframeDot className='baseColor point'/>
+                      <BtnFlip text={'Fale conosco'}/>
+                    </div>
+                    <div className='divLeft'>
+                      <VscDebugStackframeDot className='baseColor point'/>
+                      <BtnFlip text={'Politica de privacidade'}/> 
+                    </div> 
+                  </div>
+                  <div className="bot">
+                    <span className='baseFont baseColor'> Apoio:</span>
+                    <img src="/image/submarino.png" alt="logosubmarino" className='restLogo'/>
+                    <img src="/image/americanas.png" alt="logoamericanas" className='restLogo'/>
+                    <img src="/image/genera.png" alt="logogenera" className='restLogo'/>
+                  </div>
+                </div>
+                <div className="restBot">
+                  <div className='left'>
+                    <div onClick={()=>{}}>
+                      <RiUserUnfollowFill className='lIcon baseColor'/>
+                      <BtnFlip text={'descadastrar'}/>
+                    </div>
+                    <div onClick={()=> {}}>
+                      <MdReportProblem className='lIcon baseColor'/>
+                      <BtnFlip text={'reportar erro'}/>
+                    </div>
+                  </div>
 
-            <div className='right'>
-              <span className='baseFont'>
-                compartilhe:
-              </span>
-              <div>
-                <img src="/image/wppicon.png" alt="wppicon" className='socialIcons'/>
-                <img src="/image/teleicon.png" alt="telegramicon" className='socialIcons'/>
-                <img src="/image/instaicon.png" alt="instagramicon" className='socialIcons'/>
-                <img src="/image/faceicon.png" alt="facebookicon" className='socialIcons'/>
-                <img src="/image/tticon.png" alt="twittericon" className='socialIcons'/>
-                <img src="/image/linkicon.png" alt="linkedinicon" className='socialIcons'/>
-              </div>
-            </div>
-          </div>
-        </div> 
+                  <div className='right'>
+                    <span className='baseFont baseColor'>
+                      compartilhe:
+                    </span>
+                    <div>
+                      <img src="/image/wppicon.png" alt="wppicon" className='socialIcons'/>
+                      <img src="/image/teleicon.png" alt="telegramicon" className='socialIcons'/>
+                      <img src="/image/instaicon.png" alt="instagramicon" className='socialIcons'/>
+                      <img src="/image/faceicon.png" alt="facebookicon" className='socialIcons'/>
+                      <img src="/image/tticon.png" alt="twittericon" className='socialIcons'/>
+                      <img src="/image/linkicon.png" alt="linkedinicon" className='socialIcons'/>
+                    </div>
+                  </div>
+                </div>
+              </div> 
             </RestInfoDiv>
 
             <Footer/>

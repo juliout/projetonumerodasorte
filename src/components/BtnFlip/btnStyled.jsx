@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 
-
+const pColor = '#3eb54e'
 
 export const BtnDiv = styled.div`
 
   box-sizing: border-box;
 
 div {
-  color: #71265b;
+  color: ${pColor};
   text-decoration: none;
   transition: color 0.2s;
   width: 100%;
@@ -20,10 +20,11 @@ div {
 
 div:hover,
 div:focus {
-  color: #71265b;
+  color: black;
 }
 
   div.flip-animate {
+    text-align: center;
   span {
     position: relative;
     display: inline-block;
@@ -57,7 +58,7 @@ div:focus {
 
   &:hover span:before,
   &:focus span:before {
-    color: #71265b;
+    color: black;
   }
   }
 

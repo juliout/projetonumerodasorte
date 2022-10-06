@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap');
 
 .baseColor{
-    color: var(--cor-principal);
+    color: #3eb54e;
 }
 .baseFont {
     font-family: 'Poppins', sans-serif;
@@ -56,4 +56,22 @@ input[type=text], select {
 }
 input[type=email], select {
     font-weight: 600;
+}
+
+input[type=checkbox] {
+    width: 1em;
+    height: 1em;
+    margin-right: 10px;
+    background-color: white;
+
+    vertical-align: middle;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+    filter: drop-shadow(1px 1px black);
+}
+
+input[type=checkbox]:checked{
+    background-color: #3eb54e;
+    border: 2px white solid;
 }

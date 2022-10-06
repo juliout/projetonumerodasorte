@@ -13,7 +13,7 @@ export default function LiPerguntas({children}) {
     }
   
     return(
-        <ListDiv className="listDiv" hidden={flexText} onClick={openText} colorx={flexText.toString()}>
+        <ListDiv className="listDiv" hidden={flexText} onClick={openText} colorx={flexText}>
             <div className='top'>
               {title ? title : null}
               <RiArrowDropDownLine className='arrowIcon'/>
