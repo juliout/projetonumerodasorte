@@ -22,7 +22,7 @@ export const ModalDiv = styled.div`
         min-height: 400px;
         max-height: 700px;
         margin-top: 10%;
-        background-color: #71265b;
+        background-color: #3fb54f;
 
         display: flex;
         flex-direction: column;

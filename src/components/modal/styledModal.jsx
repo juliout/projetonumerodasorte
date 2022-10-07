@@ -14,7 +14,7 @@ export const ModalMain = styled.div`
 `
 
 export const DesDiv = styled.div`
-    background-color: #71265b;
+    background-color: #3fb54f;
 
     width: 30%;
     min-width: 430px;
@@ -29,7 +29,7 @@ export const DesDiv = styled.div`
         width: 25px;
         height: 25px;
         border-radius: 50%;
-        color: silver;
+        color: #3fb54f;
         background-color: white;
         transform: scale(1.5);
         cursor: pointer;
@@ -55,7 +55,7 @@ export const DesDiv = styled.div`
             width: 80%;
             text-align: center;
             font-size: 0.9rem;
-            color: silver;
+            color: white;
             margin-bottom: 10px;
         }
 
@@ -66,7 +66,7 @@ export const DesDiv = styled.div`
             flex-direction: column;
 
             label {
-                color: #f4e29b;
+                color: #cce737;
                 margin-bottom: 5px;
             }
             
@@ -78,6 +78,7 @@ export const DesDiv = styled.div`
             
             input[type=date] {
                 width: 70%;
+                padding-left: 10px;
             }
             .top {
                 display: flex;
@@ -88,7 +89,7 @@ export const DesDiv = styled.div`
                 .divinput {
                     display: flex;
                     flex-direction: column;
-                    width: 47%;
+                    width: 100%;
                 }
             }
             .botton {
@@ -116,8 +117,8 @@ export const DesDiv = styled.div`
             border-radius: 7px;
             border: 1px solid white;
 
-            background-color: #71265b;
-            color: #f4e29b;
+            background-color: #3fb54f;
+            color: white;
             font-size: 1rem;
             font-weight: 700;
 
@@ -125,7 +126,7 @@ export const DesDiv = styled.div`
 
             :hover {
                 background-color: white;
-                color: #71265b;
+                color: #095e57;
             }
         }
     }
@@ -152,7 +153,7 @@ export const DesDiv = styled.div`
 `
 
 export const RepoDiv = styled.div`
-    background-color: #71265b;
+    background-color: #3eb54e;
 
     width: 30%;
     min-width: 430px;
@@ -191,8 +192,8 @@ export const RepoDiv = styled.div`
         p {
             width: 80%;
             text-align: center;
-            font-size: 0.8rem;
-            color: silver;
+            font-size: 0.85rem;
+            color: white;
             margin-bottom: 25px;
         }
         
@@ -227,14 +228,14 @@ export const RepoDiv = styled.div`
             cursor: pointer;
             border: 1px solid white;
 
-            background-color: #71265b;
-            color: #f4e29b;
+            background-color: #3fb54f;
+            color: white;
             font-size: 1rem;
             font-weight: 700;
 
             :hover {
                 background-color: white;
-                color: #71265b;
+                color: #095e57;
             }
         }
     }

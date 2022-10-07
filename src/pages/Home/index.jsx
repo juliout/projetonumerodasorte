@@ -22,17 +22,48 @@ import {MdReportProblem} from 'react-icons/md'
 
 export default function Home() {
   const [plataform, setPlataform] = useState('whatsapp')
+  const [modalDescadastrar, setModalDescadastrar] = useState(false)
+  const [modalReportar , setModalReportar] = useState(false)
 
+  const [cadastrar, setCadastrar] = useState(false)
+  const [formCadastro, setFormCadastro] = useState({})
+  const [socialContact, setSocialContact] = useState('')
 
+  const sendCadastrar = async (e) => {
+    e.preventDefault()
+    console.log(e.target)
+    let {name, eMail, genero, nascimento, social, socialContact} = e.target
+
+    social.forEach(i => {
+      if (i.checked === true)
+        return social = i.id
+      })
+
+    let form = {
+      name: name.value,
+      email: eMail.value,
+      genero: genero.value,
+      nascimento: nascimento.value,
+      social: social,
+      socialContact: socialContact.value,
+      site: 'horoscopozap'
+    }
+    setFormCadastro(form)   
+    setCadastrar(true)
+  }
 
 
     return (
         <>
             <Header/>
+              {cadastrar === true ? <MCadastro setCadastrar={setCadastrar} form={formCadastro}/> : null}
+              {modalDescadastrar === true ? <Modal type={'descadastrar'} Modal={setModalDescadastrar}/> : null}
+              {modalReportar === true ? <Modal type={'reportarError'} Modal={setModalReportar}/> : null}
+     
             <BannerDiv>
                 <div className="bannerMain">
                   <form className='left'>
-                    <h1>
+                    <h1 className='leftTitle'>
                       Receba gratuitamente no seu zap lembretes de encerramento 
                       de apostas eo resultado dos sorteios das principais
                       loterias brasileiras!
@@ -247,11 +278,11 @@ export default function Home() {
                 </div>
                 <div className="restBot">
                   <div className='left'>
-                    <div onClick={()=>{}}>
+                    <div onClick={()=>{setModalDescadastrar(true)}}>
                       <RiUserUnfollowFill className='lIcon baseColor'/>
                       <BtnFlip text={'descadastrar'}/>
                     </div>
-                    <div onClick={()=> {}}>
+                    <div onClick={()=> setModalReportar(true)}>
                       <MdReportProblem className='lIcon baseColor'/>
                       <BtnFlip text={'reportar erro'}/>
                     </div>

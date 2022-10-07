@@ -204,6 +204,7 @@ export const BannerDiv = styled.div`
             }
             .zap {
                 width: 60%;
+                max-width: 170px;
                 transform: translateY(50px);
                 margin-left: 40px;
             }

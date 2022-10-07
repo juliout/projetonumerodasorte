@@ -23,10 +23,6 @@ export default function Modal({type , Modal}) {
                                     <label htmlFor="">Nome Completo</label>
                                     <InputName type="text" name="" id="" />
                                 </div>
-                                <div className='divinput'>
-                                    <label htmlFor="">Data Nasc.:</label>
-                                    <input type="date" name="" id="" />
-                                </div>
                             </div>
                             <div className='botton'>
                                 <div className='divinput'>
