@@ -20,7 +20,7 @@ import {VscDebugStackframeDot} from 'react-icons/vsc'
 import {MdReportProblem} from 'react-icons/md'
 
 
-export default function Home() {
+export default function Home(){
   const [plataform, setPlataform] = useState('whatsapp')
   const [modalDescadastrar, setModalDescadastrar] = useState(false)
   const [modalReportar , setModalReportar] = useState(false)
@@ -29,28 +29,28 @@ export default function Home() {
   const [formCadastro, setFormCadastro] = useState({})
   const [socialContact, setSocialContact] = useState('')
 
-  const sendCadastrar = async (e) => {
-    e.preventDefault()
-    console.log(e.target)
-    let {name, eMail, genero, nascimento, social, socialContact} = e.target
+  // const sendCadastrar = async (e) => {
+  //   e.preventDefault()
+  //   console.log(e.target)
+  //   let {name, eMail, genero, nascimento, social, socialContact} = e.target
 
-    social.forEach(i => {
-      if (i.checked === true)
-        return social = i.id
-      })
+  //   social.forEach(i => {
+  //     if (i.checked === true)
+  //       return social = i.id
+  //     })
 
-    let form = {
-      name: name.value,
-      email: eMail.value,
-      genero: genero.value,
-      nascimento: nascimento.value,
-      social: social,
-      socialContact: socialContact.value,
-      site: 'horoscopozap'
-    }
-    setFormCadastro(form)   
-    setCadastrar(true)
-  }
+  //   let form = {
+  //     name: name.value,
+  //     email: eMail.value,
+  //     genero: genero.value,
+  //     nascimento: nascimento.value,
+  //     social: social,
+  //     socialContact: socialContact.value,
+  //     site: 'horoscopozap'
+  //   }
+  //   setFormCadastro(form)   
+  //   setCadastrar(true)
+  // }
 
 
     return (
@@ -143,9 +143,9 @@ export default function Home() {
                         </div>
                         { 
                           plataform === 'whatsapp' ?          
-                          <InputMask className='redeDado' mask={'(99)99999-9999'} name='socialContact' id='socialContact'/>               
-                          : plataform === 'telegram' ? <input type='text'className='redeDado' name='socialContact' id='socialContact'/>
-                          : plataform === 'e-mail' ?<Email type='email' className='redeDado' name='socialContact' id='socialContact'/>
+                          <InputMask className='redeDado shadow' mask={'(99)99999-9999'} name='socialContact' id='socialContact' />               
+                          : plataform === 'telegram' ? <input type='text'className='redeDado shadow' name='socialContact' id='socialContact'/>
+                          : plataform === 'e-mail' ?<Email type='email' className='redeDado shadow' name='socialContact' id='socialContact'/>
                           : null
                         } 
                         <div className='termosdiv'>
@@ -309,3 +309,4 @@ export default function Home() {
         </>
     )
 }
+

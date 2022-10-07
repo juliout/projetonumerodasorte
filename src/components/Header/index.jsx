@@ -1,7 +1,7 @@
 import {HeaderDiv} from './headerStyled'
 import { GiHamburgerMenu, GiPadlock } from 'react-icons/gi'
 import {FiEdit} from 'react-icons/fi'
-
+import { Link } from 'react-router-dom'
 
 export default function Header() {
     return (
@@ -13,10 +13,10 @@ export default function Header() {
             <div className='logindiv'>
                 <input type="text" name="" id="" autoComplete='none'/>
                 <input type="password" name="" id="" autoComplete='off'/>
-                <button>Login</button>
+                <Link to='/user/painel'><button>Login</button></Link>
                 <GiPadlock className='iconH'/>
                 <FiEdit className='iconH'/>
-                <GiHamburgerMenu className='hamburgerMenu'/>
+                <Link to='/'><GiHamburgerMenu className='hamburgerMenu'/></Link>
             </div>
 
         </HeaderDiv>

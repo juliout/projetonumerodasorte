@@ -24,7 +24,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 977px;
+    min-height: 677px;
     height: auto;
     
 }
@@ -59,19 +59,22 @@ input[type=email], select {
 }
 
 input[type=checkbox] {
-    width: 1em;
-    height: 1em;
-    margin-right: 10px;
+    width: 1em !important;
+    height: 1em !important;
+    margin-right: 3px;
     background-color: white;
 
     vertical-align: middle;
     appearance: none;
     outline: none;
     cursor: pointer;
-    filter: drop-shadow(1px 1px black);
+    box-shadow: inset 1px 1px 2px #000;
 }
 
 input[type=checkbox]:checked{
     background-color: #3eb54e;
     border: 2px white solid;
+}
+.shadow{
+    box-shadow: inset 1px 1px 2px #000 !important;
 }

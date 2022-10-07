@@ -157,7 +157,7 @@ export const BannerDiv = styled.div`
                 height: 37px;
                 margin: 10px 0;
                 border-radius: 10px;
-                border: 1px solid black;
+
                 text-align: center;
                box-shadow: 1px 1px black;
             }
