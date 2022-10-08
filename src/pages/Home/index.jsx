@@ -8,6 +8,9 @@ import Modal from '../../components/modal'
 import FuncionaCard from '../../components/FuncionaCards'
 import InputMask from 'react-input-mask'
 
+import nmbBg from '../../images/bannernumeros.png'
+import indicarbg from '../../images/indicarbg.png'
+
 import {BannerDiv, ComoFuncionaDiv, PerguntasDiv, IndicarBannerDiv,RestInfoDiv} from './homeStyled'
 
 import InputName from '../../components/inputName'
@@ -60,7 +63,7 @@ export default function Home(){
               {modalDescadastrar === true ? <Modal type={'descadastrar'} Modal={setModalDescadastrar}/> : null}
               {modalReportar === true ? <Modal type={'reportarError'} Modal={setModalReportar}/> : null}
      
-            <BannerDiv>
+            <BannerDiv bg={nmbBg}>
                 <div className="bannerMain">
                   <form className='left'>
                     <h1 className='leftTitle'>
@@ -209,7 +212,7 @@ export default function Home(){
                 </div>
               </div>
             </PerguntasDiv>
-            <IndicarBannerDiv>
+            <IndicarBannerDiv bg={indicarbg}>
                 <div className="indicaMain">
                 <div className="indicarLeft">
                     <h1>Título texto alerta de Sorte exemplo</h1>

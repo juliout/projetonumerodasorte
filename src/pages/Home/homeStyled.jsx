@@ -12,7 +12,7 @@ export const BannerDiv = styled.div`
     
     width: 100%;
     height: 350px;
-    background-image: url('./image/bannernumeros.png');
+    background-image: url(${props=> props.bg});
     background-repeat: no-repeat;
     background-size: 110% 100%;
     background-position: center;
@@ -308,7 +308,7 @@ export const IndicarBannerDiv = styled.div`
     align-items: center;
     justify-content: center;
 
-    background-image: url('./image/indicarbg.png');
+    background-image: url(${props=>props.bg});
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
