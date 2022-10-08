@@ -93,7 +93,7 @@ export default function Homes() {
                 </div>
                 <div className='input'>
                   <label htmlFor="nascimento">Data Nasc.:</label>
-                  <InputMask type='date' name='nascimento' id='nascimento'/>
+                  <input type='date' name='nascimento' id='nascimento'/>
                 </div>
               </dir>
               <div className='receber baseFont'>

@@ -89,29 +89,36 @@ export default function MCadastro({setCadastrar, form}) {
                         editar ou cancelar seus alertas aqui pelo site.
                     </h2>
                     <div className='divForm'>
-                        <div className='input fullname'>
-                            <label htmlFor="name">Nome Completo:</label>
-                            <InputName type="text" name='name' id='name' required value={name} onChange={(e)=>setName(e.target.value)}/>
-                        </div>
+                        
                         <div className='stwo'>
-                        <div className='input'>
-                            <label htmlFor="nascimento">Data Nasci.:</label>
-                            <InputMask  mask={'99-99-9999'} type='date' id='nascimento' required value={dataNascimento} onChange={(e)=>setDataNascimento(e.target.value)}/>
+                            <div className='input fullname'>
+                                <label htmlFor="name">Nome Completo:</label>
+                                <InputName type="text" name='name' id='name' required value={name} onChange={(e)=>setName(e.target.value)}/>
+                            </div>
+                            <div className="select">
+                                <label htmlFor="">genero</label>
+                                <select name="" id="" className='.input'>
+                                    <option value="">Masculino</option>
+                                    <option value="">Feminino</option>
+                                </select>
+                            </div>
+                            <div className='input'>
+                                <label htmlFor="nascimento">Data Nasci.:</label>
+                                <input type='date' id='nascimento' required value={dataNascimento} onChange={(e)=>setDataNascimento(e.target.value)}/>
+                            </div>
+                            
                         </div>
-                        <div className='input '>
-                            <label htmlFor="name">E-mail</label>
-                            <Email type="email" name='email' id='email'  required value={email} onChange={(e)=>setEmail(e.target.value)}/>
+                        <div className="sone">
+                            <div className='input '>
+                                <label htmlFor="name">E-mail</label>
+                                <Email type="email" name='email' id='email'  required value={email} onChange={(e)=>setEmail(e.target.value)}/>
+                            </div>
+                            <div className='input'>
+                                <label htmlFor="name">Senha</label>
+                                <input type="password" name='password' id='password' required/>
+                            </div>
                         </div>
-                        <div className='input'>
-                            <label htmlFor="name">Senha</label>
-                            <input type="password" name='password' id='password' required/>
-                        </div>
-                        </div>
-                        <p className='pform'>
-                            Para cadastrar mais veículos, editar ou cancelar o envio dos alertas,
-                            acesse a área administrativa do site com sua senha.
-                        </p>
-
+                       
                         <div className='divtemos'>
                             <input type="checkbox" name="" id="" required/>
                             <label htmlFor="">Li e aceito os <span>termos de uso</span>.</label>

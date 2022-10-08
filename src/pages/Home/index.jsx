@@ -25,7 +25,7 @@ export default function Home(){
   const [modalDescadastrar, setModalDescadastrar] = useState(false)
   const [modalReportar , setModalReportar] = useState(false)
 
-  const [cadastrar, setCadastrar] = useState(false)
+  const [cadastrar, setCadastrar] = useState(true)
   const [formCadastro, setFormCadastro] = useState({})
   const [socialContact, setSocialContact] = useState('')
 

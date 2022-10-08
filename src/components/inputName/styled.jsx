@@ -8,6 +8,7 @@ export const InputDiv = styled.div`
         border: ${p=> p.border ? '1px red solid' : 'none'};
     }
     p {
+        position: absolute;
         color: red;
         font-size: 0.5em;
         margin-top: 5px;

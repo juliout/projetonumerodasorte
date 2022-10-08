@@ -1,7 +1,8 @@
 
-
-@media (max-width: 608px) {
-    
+@media (max-width: 620px) {
+    .divlogo>h1 {
+        font-size: 1rem !important;
+    }
     .restBot{
         flex-direction: column;        
         height: 120px;
@@ -19,7 +20,7 @@
     }
 }
 
-@media (max-width: 523px) {
+@media (max-width: 560px) {
 
     .sc-jrcTuL {
         background-size: cover !important;
@@ -124,9 +125,26 @@
         margin-left: 5px;
         font-size: 0.6rem !important;
     }
+
+    .topCadas {
+        height: 100px !important;
+        margin-bottom: 10%;
+        flex-wrap: wrap;
+    }
+    
 }
 
-@media (max-width: 400px) {
+@media (max-width: 426px) {
+    .prontobtn {
+        width: 70% !important;
+    }
+    .formTitle {
+        
+        width: 90% !important;
+    }
+    .divForm {
+        width: 90% !important;
+    }
     .cardRede>label>img{
         min-width: 35px !important;
     }
@@ -189,10 +207,17 @@
         width: 49% !important;
         height: 47% !important;
     }
+    .gcUYpE table {
+        font-size: 0.7rem !important;
+    }
 }
 
 @media (max-width: 321px) {
-
+    .botCadas {
+        margin-top: 20px !important;
+        height: 150px !important;
+        flex-wrap: wrap;
+    }
     .sc-jrcTuL{
         height: 550px !important;
     }
