@@ -54,6 +54,10 @@ export default function Home(){
   //   setFormCadastro(form)   
   //   setCadastrar(true)
   // }
+  function openModal(e){
+    e.preventDefault()
+    setCadastrar(true)
+  }
 
 
     return (
@@ -155,7 +159,7 @@ export default function Home(){
                           <input type="checkbox" name="termos" id="termos" />
                           <label htmlFor="termos"> Li e aceito os <a>termos de uso</a></label>
                         </div>
-                      <button className='cadastrarbtn'> CADASTRAR </button>                
+                      <button className='cadastrarbtn' onClick={(e)=>openModal(e)}> CADASTRAR </button>                
                         
                       </div>  
                     </div>
