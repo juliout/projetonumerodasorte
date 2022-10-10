@@ -15,12 +15,15 @@ import {BannerDiv, ComoFuncionaDiv, PerguntasDiv, IndicarBannerDiv,RestInfoDiv} 
 
 import InputName from '../../components/inputName'
 import Email from '../../components/emailAutocompletee'
+import ModalError from '../../components/modalError'
 
 
 import {BsFillShareFill} from 'react-icons/bs'
 import {RiUserUnfollowFill} from 'react-icons/ri'
 import {VscDebugStackframeDot} from 'react-icons/vsc'
 import {MdReportProblem} from 'react-icons/md'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Home(){
@@ -32,32 +35,35 @@ export default function Home(){
   const [formCadastro, setFormCadastro] = useState({})
   const [socialContact, setSocialContact] = useState('')
 
-  // const sendCadastrar = async (e) => {
-  //   e.preventDefault()
-  //   console.log(e.target)
-  //   let {name, eMail, genero, nascimento, social, socialContact} = e.target
 
-  //   social.forEach(i => {
-  //     if (i.checked === true)
-  //       return social = i.id
-  //     })
 
-  //   let form = {
-  //     name: name.value,
-  //     email: eMail.value,
-  //     genero: genero.value,
-  //     nascimento: nascimento.value,
-  //     social: social,
-  //     socialContact: socialContact.value,
-  //     site: 'horoscopozap'
-  //   }
-  //   setFormCadastro(form)   
-  //   setCadastrar(true)
-  // }
-  function openModal(e){
+  const sendCadastrar = async (e) => {
     e.preventDefault()
-    setCadastrar(true)
+    let array = []
+    let social;
+    let loteriaArray = e.target.loteria
+    loteriaArray.forEach(element => {
+      if (element.checked === true) {
+        array.push(element.id)
+      }
+    });
+    
+    e.target.social.forEach(element=>{
+      if(element.checked === true) {
+        social = element.id
+      }
+    })
+    if(e.target.socialContact.id === 'socialContact-wpp'){
+      var er = /[^a-z0-9]/gi;
+		  let texto = e.target.socialContact.value.replace(er, "");
+      console.log(texto.length)
+      if(texto.length < 13) {
+        return ModalError('telefone invalido')
+      }
+    }
+    
   }
+  
 
 
     return (
@@ -66,10 +72,22 @@ export default function Home(){
               {cadastrar === true ? <MCadastro setCadastrar={setCadastrar} form={formCadastro}/> : null}
               {modalDescadastrar === true ? <Modal type={'descadastrar'} Modal={setModalDescadastrar}/> : null}
               {modalReportar === true ? <Modal type={'reportarError'} Modal={setModalReportar}/> : null}
+
+              <ToastContainer
+                position="top-center"
+                autoClose={1000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+              />
      
             <BannerDiv bg={nmbBg}>
                 <div className="bannerMain">
-                  <form className='left'>
+                  <form className='left' onSubmit={(e)=> sendCadastrar(e)}>
                     <h1 className='leftTitle'>
                       Receba gratuitamente no seu zap lembretes de encerramento 
                       de apostas eo resultado dos sorteios das principais
@@ -82,52 +100,52 @@ export default function Home(){
                           </h3>
 
                           <div className="divUls">
-                            <ul>
+                            <ul id='ul-lis-inputs'>
                               <li>
-                                <input type="checkbox" name="" id=""/>
-                                <label htmlFor="">Mega Sena</label>
+                                <input type="checkbox" name="loteria" id="megasena"/>
+                                <label htmlFor="megasena">Mega Sena</label>
                               </li>
                               <li>
-                                <input type="checkbox" name="" id=""/>
-                                <label htmlFor="">Lotofácil</label>
+                                <input type="checkbox" name="loteria" id="lotofacil"/>
+                                <label htmlFor="lotofacil">Lotofácil</label>
                               </li>
                               <li>
-                                <input type="checkbox" name="" id=""/>
-                                <label htmlFor="">Dupla Sena</label>
+                                <input type="checkbox" name="loteria" id="duplasena"/>
+                                <label htmlFor="duplasena">Dupla Sena</label>
                               </li>
                               <li>
-                                <input type="checkbox" name="" id=""/>
-                                <label htmlFor="">Quina</label>
+                                <input type="checkbox" name="loteria" id="quina"/>
+                                <label htmlFor="quina">Quina</label>
                               </li>
                               <li>
-                                <input type="checkbox" name="" id=""/>
-                                <label htmlFor="">Super sete</label>
+                                <input type="checkbox" name="loteria" id="supersete"/>
+                                <label htmlFor="supersete">Super sete</label>
                               </li>
                               <li>
-                                <input type="checkbox" name="" id=""/>
-                                <label htmlFor="">Timemania</label>
+                                <input type="checkbox" name="loteria" id="timemania"/>
+                                <label htmlFor="timemania">Timemania</label>
                               </li>
                             </ul>
                             <ul>
                               <li>
-                                <input type="checkbox" name="" id=""/>
-                                <label htmlFor="">Lotomania</label>
+                                <input type="checkbox" name="loteria" id="lotomania"/>
+                                <label htmlFor="lotomania">Lotomania</label>
                               </li>
                               <li>
-                                <input type="checkbox" name="" id=""/>
-                                <label htmlFor="">Dia de sorte</label>
+                                <input type="checkbox" name="loteria" id="diadesorte"/>
+                                <label htmlFor="diadesorte">Dia de sorte</label>
                               </li>
                               <li>
-                                <input type="checkbox" name="" id=""/>
-                                <label htmlFor="">Federal</label>
+                                <input type="checkbox" name="loteria" id="federal"/>
+                                <label htmlFor="federal">Federal</label>
                               </li>
                               <li>
-                                <input type="checkbox" name="" id=""/>
-                                <label htmlFor="">Loteca</label>
+                                <input type="checkbox" name="loteria" id="loteca"/>
+                                <label htmlFor="loteca">Loteca</label>
                               </li>
                               <li>
-                                <input type="checkbox" name="" id=""/>
-                                <label htmlFor="">Milionária</label>
+                                <input type="checkbox" name="loteria" id="milionaria"/>
+                                <label htmlFor="milionaria">Milionária</label>
                               </li>
                             </ul>
                           </div>
@@ -136,30 +154,30 @@ export default function Home(){
                         <h3><p>2</p> Como quer receber ?</h3>
                         <div className='redesSelect'>
                           <div className='cardRede' onClick={()=> {setPlataform('whatsapp')}}>
-                            <label htmlFor='whatsapp'><img src="/image/bwpp.png" alt="" htmlFor='rede'/></label>
+                            <label htmlFor='whatsapp'><img src="/image/bwpp.png" alt=""/></label>
                             <input type="radio" name="social" id="whatsapp"  defaultChecked/>
                           </div>
                           <div className='cardRede' onClick={()=> {setPlataform('telegram')}}>
-                            <label htmlFor="telegram"><img src="/image/btele.png" alt="" /></label>
+                            <label htmlFor="telegram" ><img src="/image/btele.png" alt="" /></label>
                             <input type="radio" name="social" id="telegram" />
                           </div>
                           <div className='cardRede' onClick={()=> {setPlataform('e-mail')}}>
-                          <label htmlFor="e-mail"><img src="/image/bemail.png" alt="" /></label>
+                            <label htmlFor="e-mail" ><img src="/image/bemail.png" alt="" /></label>
                             <input type="radio" name="social" id="e-mail" />
                           </div>
                         </div>
                         { 
                           plataform === 'whatsapp' ?          
-                          <InputMask className='redeDado shadow' mask={'(99)99999-9999'} name='socialContact' id='socialContact' />               
-                          : plataform === 'telegram' ? <input type='text'className='redeDado shadow' name='socialContact' id='socialContact'/>
-                          : plataform === 'e-mail' ?<Email type='email' className='redeDado shadow' name='socialContact' id='socialContact'/>
+                          <InputMask  type='text' className='redeDado shadow' mask={'(99)99999-9999'} name='socialContact' id='socialContact-wpp'/>               
+                          : plataform === 'telegram' ? <input type='text'className='redeDado shadow' name='socialContact' id='socialContact-telegram' required/>
+                          : plataform === 'e-mail' ?<Email type='email' className='redeDado shadow' name='socialContact' id='socialContact-email' required/>
                           : null
                         } 
                         <div className='termosdiv'>
-                          <input type="checkbox" name="termos" id="termos" />
-                          <label htmlFor="termos"> Li e aceito os <a>termos de uso</a></label>
+                          <input type="checkbox" name="termos" id="termos" required/>
+                          <label htmlFor="termos"> Li e aceito os <a href='/termosss'>termos de uso</a></label>
                         </div>
-                      <button className='cadastrarbtn' onClick={(e)=>openModal(e)}> CADASTRAR </button>                
+                      <button className='cadastrarbtn'> CADASTRAR </button>                
                         
                       </div>  
                     </div>
