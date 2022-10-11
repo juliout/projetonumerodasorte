@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import axios from 'axios'
 import InputMask from 'react-input-mask'
 import {ModalDiv} from './modalStyled'
@@ -6,46 +6,23 @@ import InputName from '../inputName'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import ModalError from '../modalError'
+import ModalSucess from '../modalSucess'
 import Email from '../emailAutocompletee';
 
 export default function MCadastro({setCadastrar, form}) {
+    const [emailC ,setEmailC]  = useState(lete())
 
-    const [name, setName] = useState(form.name)
-    const [dataNascimento, setDataNascimento] = useState(form.nascimento)
-    const [email, setEmail] = useState(form.email)
-
+    function lete () {
+        if(form.social === 'e-mail'){
+            return form.socialContact
+        }
+        else return null
+    }
+    
     const closebox = (e) => {
         e.preventDefault()
         setCadastrar(false)        
-    }
-
-    async function toastError(message) {
-        return toast.error(`${message}`, {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            className: 'error-toast'
-        })        
-    }
-
-    async function toastSucess(message) {
-        toast.success(`${message}`, {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
-        return setTimeout(()=>{
-            window.location.reload();
-        }, 3500);
     }
 
     const sendCadastro = async (e) => {
@@ -59,14 +36,22 @@ export default function MCadastro({setCadastrar, form}) {
             password: password.value,
             social: form.social,
             socialContact : form.socialContact,
-            site: 'horoscopozap'
+            loteria : form.loteria,
+            site: 'alerta-da-sorte'
         }
 
-        const reponse = await axios.post('/createuser', user).catch(async error => {
-            return await toastSucess(error.message)
+        const response = await axios.post('/createuser', user).catch(async error => {
+            return await ModalError(error.message)
         })
-        if(reponse.status === 400) { return console.log(reponse.data.message)}
-    }
+        if(response.status === 400) { return ModalError(response.data.message)}
+        const reload = () => {
+            return setTimeout(()=>{
+                window.location.reload();
+            }, 3500);
+        }
+        return ModalSucess('Cadastradi com sucesso', reload)
+    
+    }   
 
     return (
         <ModalDiv>
@@ -93,25 +78,25 @@ export default function MCadastro({setCadastrar, form}) {
                         <div className='stwo'>
                             <div className='input fullname'>
                                 <label htmlFor="name">Nome Completo:</label>
-                                <InputName type="text" name='name' id='name' required value={name} onChange={(e)=>setName(e.target.value)}/>
+                                <InputName type="text" name='name' id='name' required/>
                             </div>
                             <div className="select">
                                 <label htmlFor="">genero</label>
-                                <select name="" id="" className='.input'>
-                                    <option value="">Masculino</option>
-                                    <option value="">Feminino</option>
+                                <select name="genero" id="genero" className='.input'>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Feminino">Feminino</option>
                                 </select>
                             </div>
                             <div className='input'>
                                 <label htmlFor="nascimento">Data Nasci.:</label>
-                                <input type='date' id='nascimento' required value={dataNascimento} onChange={(e)=>setDataNascimento(e.target.value)}/>
+                                <input type='date' name='nascimento' id='nascimento' required/>
                             </div>
                             
                         </div>
                         <div className="sone">
                             <div className='input '>
-                                <label htmlFor="name">E-mail</label>
-                                <Email type="email" name='email' id='email'  required value={email} onChange={(e)=>setEmail(e.target.value)}/>
+                                <label htmlFor="email">E-mail</label>
+                                <Email name='email' id='email' required value={emailC} onChange={(e)=>{setEmailC(e.target.value)}} autoComplete='off' />
                             </div>
                             <div className='input'>
                                 <label htmlFor="name">Senha</label>
@@ -120,8 +105,8 @@ export default function MCadastro({setCadastrar, form}) {
                         </div>
                        
                         <div className='divtemos'>
-                            <input type="checkbox" name="" id="" required/>
-                            <label htmlFor="">Li e aceito os <span>termos de uso</span>.</label>
+                            <input type="checkbox" name="termodal" id="termodal" required/>
+                            <label htmlFor="temodal">Li e aceito os <span>termos de uso</span>.</label>
                         </div>
                         <button className='prontobtn'>Pronto!</button>
                     </div>

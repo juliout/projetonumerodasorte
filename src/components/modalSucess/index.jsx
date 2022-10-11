@@ -1,8 +1,8 @@
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default async function ModalError(message) {
-    toast.error(`${message}`, {
+export default async function ModalSucess(message, cb) {
+    toast.success(`${message}`, {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -10,7 +10,9 @@ export default async function ModalError(message) {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        className: 'error-toast',
-    })
-      
+    });      
+  if(!cb) {
+    return null
+  }
+  cb()
 }

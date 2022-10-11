@@ -6,7 +6,7 @@ export default class Email extends Component {
     super(props);
 
     this.state = {
-      value: '',
+      value: props.value,
       suggestion: '',
       valid: true,
     };
@@ -99,7 +99,9 @@ export default class Email extends Component {
           {...props}
           autoCapitalize="none"
           type="text"
+          required
           inputMode="email"
+          autoComplete='off'
           value={value || ''}
           onChange={this.handleChange}
           onKeyUp={this.getSuggest}

@@ -16,7 +16,8 @@ import {BannerDiv, ComoFuncionaDiv, PerguntasDiv, IndicarBannerDiv,RestInfoDiv} 
 import InputName from '../../components/inputName'
 import Email from '../../components/emailAutocompletee'
 import ModalError from '../../components/modalError'
-
+import ModalSucess from '../../components/modalSucess'
+import axios from 'axios'
 
 import {BsFillShareFill} from 'react-icons/bs'
 import {RiUserUnfollowFill} from 'react-icons/ri'
@@ -40,7 +41,8 @@ export default function Home(){
   const sendCadastrar = async (e) => {
     e.preventDefault()
     let array = []
-    let social= ''
+    let socialI = ''
+    let contact= ''
     let loteriaArray = e.target.loteria
     loteriaArray.forEach(element => {
       if (element.checked === true) {
@@ -50,26 +52,53 @@ export default function Home(){
     
     e.target.social.forEach(element=>{
       if(element.checked === true) {
-        social = element.id
+        socialI = element.id
       }
     })
     if(e.target.socialContact.id === 'socialContact-wpp'){
       var er = /[^a-z0-9]/gi;
 		  let texto = e.target.socialContact.value.replace(er, "");
-      console.log(texto.length)
+      
       if(texto.length < 11) {
         return ModalError('telefone invalido')
       }
+      contact = texto
     }
-    console.log(social)
+    if(e.target.socialContact.id === 'socialContact-email') {
+      
+      let resulte = e.target.socialContact.value.indexOf('@') > -1
+      
+      if(resulte === false) {
+        return ModalError('email invalido')
+      } 
+      contact = e.target.socialContact.value
+    }
+
+    let userObj = {
+      loteria : array,
+      social: socialI,
+      socialContact : contact,
+    }
+    setFormCadastro(userObj)
+    setCadastrar(true)
     
   }
   
 
+  const sendLogin = async  (login) => {
+    const response = await axios.post('/login', login).catch(async error => {
+      return await ModalError(error.message)
+    })
+
+    if(response.status === 400) { return ModalError(response.data.message)}
+        
+    return ModalSucess('Cadastradi com sucesso' )
+  }
+
 
     return (
         <>
-            <Header/>
+            <Header sendLogin={sendLogin}/>
               {cadastrar === true ? <MCadastro setCadastrar={setCadastrar} form={formCadastro}/> : null}
               {modalDescadastrar === true ? <Modal type={'descadastrar'} Modal={setModalDescadastrar}/> : null}
               {modalReportar === true ? <Modal type={'reportarError'} Modal={setModalReportar}/> : null}
