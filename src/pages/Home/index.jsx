@@ -40,7 +40,7 @@ export default function Home(){
   const sendCadastrar = async (e) => {
     e.preventDefault()
     let array = []
-    let social;
+    let social= ''
     let loteriaArray = e.target.loteria
     loteriaArray.forEach(element => {
       if (element.checked === true) {
@@ -57,10 +57,11 @@ export default function Home(){
       var er = /[^a-z0-9]/gi;
 		  let texto = e.target.socialContact.value.replace(er, "");
       console.log(texto.length)
-      if(texto.length < 13) {
+      if(texto.length < 11) {
         return ModalError('telefone invalido')
       }
     }
+    console.log(social)
     
   }
   
