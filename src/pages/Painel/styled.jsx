@@ -5,7 +5,7 @@ export const PainelDiv = styled.div`
     justify-content: center;
     padding-top: 3%;
     width: 100%;
-    height: 88vh;
+    height: 88.2vh;
     background-color: #eeeeee;
 `
 

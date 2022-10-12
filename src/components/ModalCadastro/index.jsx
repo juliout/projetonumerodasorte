@@ -1,14 +1,14 @@
 import {useEffect, useState} from 'react'
-import axios from 'axios'
-import InputMask from 'react-input-mask'
 import {ModalDiv} from './modalStyled'
 import InputName from '../inputName'
+import { useNavigate } from 'react-router-dom';
 
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ModalError from '../modalError'
 import ModalSucess from '../modalSucess'
 import Email from '../emailAutocompletee';
+
+import { Api } from '../../api'
 
 export default function MCadastro({setCadastrar, form}) {
     const [emailC ,setEmailC]  = useState(lete())
@@ -25,6 +25,7 @@ export default function MCadastro({setCadastrar, form}) {
         setCadastrar(false)        
     }
 
+    const navigate = useNavigate()
     const sendCadastro = async (e) => {
         e.preventDefault()
         let {name, nascimento, email, password} = e.target
@@ -37,35 +38,40 @@ export default function MCadastro({setCadastrar, form}) {
             social: form.social,
             socialContact : form.socialContact,
             loteria : form.loteria,
-            site: 'alerta-da-sorte'
+            rede: 'alerta-da-sorte'
         }
-
-        const response = await axios.post('/createuser', user).catch(async error => {
-            return await ModalError(error.message)
+        console.log(user)
+        await Api.post('/createuser', user)
+        .then(async response=> {
         })
-        if(response.status === 400) { return ModalError(response.data.message)}
-        const reload = () => {
-            return setTimeout(()=>{
-                window.location.reload();
-            }, 3500);
+        .catch(async response=> {
+            console.log(response.response.data.message)
+            return await ModalError(response.response.data.message)
+        })
+        let login = {
+            email: user.email,
+            password: user.password,
+            rede: 'alerta-da-sorte'
         }
-        return ModalSucess('Cadastradi com sucesso', reload)
+        const resposta = await Api.post('/login', login).catch(async error=> {
+            if(!error.response.data){
+                return await ModalError('Error ao logar, tente mais tarde')
+            }
+            return await ModalError(error.response.data.message)
+        })
+        if(resposta) {
+            
+            await localStorage.setItem('userToken',JSON.stringify(resposta.data.user))
+            await ModalSucess('Cadastrado, sendo redirecionado')
+            return setTimeout(() => {
+               window.location.reload() 
+            }, 2000);
+        }
     
     }   
 
     return (
         <ModalDiv>
-            <ToastContainer
-                position="top-center"
-                autoClose={1000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            />
             <div className="modalMain">
                 <button className='btnClose' onClick={closebox}> X </button>
                 <form id='formSendCadastro' onSubmit={sendCadastro}>

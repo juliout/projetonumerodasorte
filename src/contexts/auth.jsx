@@ -1,78 +1,73 @@
 import { useState, createContext, useEffect } from 'react'
 import {Api} from '../api'
 import ModalError from '../components/modalError';
-
-
-export const AuthContext = createContext({})
+import ModalSucess from '../components/modalSucess';
+import { useNavigate } from 'react-router-dom'
+export const AuthContext = createContext()
 
 export default function AuthProvider({ children }){
     const [usuario, setUsuario] = useState(null);
-    const [loadingAuth, setLoadingAuth] = useState(false)
-    const [loading, setLoading] = useState(true)
-
-    const[modalError, setModalError] = useState(false)
-    const [status, setStatus] = useState('')
-
+ 
+    const navigate = useNavigate()
     useEffect(()=>{
-        function loadUsuario(){
+        async function loadUsuario(){
 
-            const usuarioStorage = localStorage.getItem('UsuarioSitema')
+        let usuarioStorage = localStorage.getItem('userToken')
 
             if(usuarioStorage){
-                setUsuario(JSON.parse(usuarioStorage))
-                setLoading(false);
+                usuarioStorage  = JSON.parse(usuarioStorage)
+                await Api.post('/session', {
+                    id: usuarioStorage.id,
+                    token: usuarioStorage.token
+                })
+                .then(async response => {
+                    setUsuario(usuarioStorage)
+                    return navigate('/user/painel')                        
+                })
+                .catch(async response=> {
+                    await ModalError('Logue novamenete')
+                    localStorage.removeItem('userToken')
+                })
             }
-            setLoading(false)
-        }
-        loadUsuario()
+        
+    }
+    loadUsuario()
+
     },[])
-
-    async function Login(email, senha){
-        try {
-            const response = await Api.post('/login',{
-                email: email,
-                senha: senha
-            })
-            const data = {
-                id: response.data._id,
-                email: response.data.email                
+    
+    async function Login(login){
+        const response = await Api.post('/login', login).catch(async response=> {
+            if(!response.response.data){
+                return await ModalError('Erro ao logar, tente mais tarde')
             }
-            setUsuario(data)
-            storageSave(data)
-            setLoadingAuth(false)
-
-        } catch (e) {
-            setStatus({
-                status: 'error',
-                message: 'Erro ao Logar'
-            })
-            setModalError(true)
+            return await ModalError(response.response.data.message)
+        })
+        if(response) {
+            localStorage.setItem('userToken',JSON.stringify(response.data.user))
+            await ModalSucess(response.data.message)
+            setUsuario(response.data.user)
+            return navigate('/user/painel')
         }
     }
     function Sair(){
-        localStorage.removeItem('UsuarioSitema')
-        window.location.reload();
+        localStorage.removeItem('userToken')
+        return window.location.reload()
     }
 
     function storageSave(data){
-        localStorage.setItem('UsuarioSitema',JSON.stringify(data))
+        localStorage.setItem('userToken',JSON.stringify(data))
     }
 
     return(
-        <>
         <AuthContext.Provider
             value={{ 
-                signed: !!usuario, 
+                authenticated: !!usuario, 
                 usuario, 
-                loading,
                 Login,
                 Sair,
-                loadingAuth
-                
             }}>
             {children}
         </AuthContext.Provider>
-        {modalError === false ? null : <ModalError closeModal={setModalError} conclusao={status.status} message={status.message} /> }
-        </>
+        
     )
 }

@@ -30,7 +30,6 @@ export const HeaderDiv = styled.header`
         display: flex;
         justify-content: space-around;
         align-items: center;
-        
 
         input {
             width: 32%;
@@ -52,15 +51,47 @@ export const HeaderDiv = styled.header`
             border: none;
         }
         .iconH {
-            width: 25px;
-            min-width: 25px;
-            height: 25px;
-            min-height: 25px;
+            width: 20px;
+            min-width: 20px;
+            height: 20px;
+            min-height: 20px;
             color: #cce737;
             margin-left: 5px;
         }
     }
-
+    .logged {
+        width: 20%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        max-width: 280px;
+        p {
+            font-size: 0.9rem;
+        }
+        
+        button {
+            width: 15%;
+            min-width: 50px;
+            height: 25px;
+            border-radius: 7px;
+            margin: 0 5px;
+            background-color: #cce737;
+            color: black;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+        }
+        .iconH {
+            width: 20px;
+            min-width: 20px;
+            height: 20px;
+            min-height: 20px;
+            color: #cce737;
+        }
+        .hamburgerMenu {
+            margin-left: 10px;
+        }
+    }
     .hamburgerMenu {
         
         fill: #cce737;

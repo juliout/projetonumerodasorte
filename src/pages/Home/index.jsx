@@ -13,11 +13,9 @@ import indicarbg from '../../images/indicarbg.png'
 
 import {BannerDiv, ComoFuncionaDiv, PerguntasDiv, IndicarBannerDiv,RestInfoDiv} from './homeStyled'
 
-import InputName from '../../components/inputName'
 import Email from '../../components/emailAutocompletee'
 import ModalError from '../../components/modalError'
-import ModalSucess from '../../components/modalSucess'
-import axios from 'axios'
+
 
 import {BsFillShareFill} from 'react-icons/bs'
 import {RiUserUnfollowFill} from 'react-icons/ri'
@@ -26,15 +24,19 @@ import {MdReportProblem} from 'react-icons/md'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { AuthContext } from '../../contexts/auth'
+import { useContext } from 'react'
 
 export default function Home(){
+
+  const { Login } = useContext(AuthContext)
+
   const [plataform, setPlataform] = useState('whatsapp')
   const [modalDescadastrar, setModalDescadastrar] = useState(false)
   const [modalReportar , setModalReportar] = useState(false)
 
   const [cadastrar, setCadastrar] = useState(false)
   const [formCadastro, setFormCadastro] = useState({})
-  const [socialContact, setSocialContact] = useState('')
 
 
 
@@ -86,13 +88,7 @@ export default function Home(){
   
 
   const sendLogin = async  (login) => {
-    const response = await axios.post('/login', login).catch(async error => {
-      return await ModalError(error.message)
-    })
-
-    if(response.status === 400) { return ModalError(response.data.message)}
-        
-    return ModalSucess('Cadastradi com sucesso' )
+    await Login(login)
   }
 
 
@@ -353,7 +349,7 @@ export default function Home(){
                       <img src="/image/instaicon.png" alt="instagramicon" className='socialIcons'/>
                       <img src="/image/faceicon.png" alt="facebookicon" className='socialIcons'/>
                       <img src="/image/tticon.png" alt="twittericon" className='socialIcons'/>
-                      <img src="/image/linkicon.png" alt="linkedinicon" className='socialIcons'/>
+                      <img src="/image/linkIcon.png" alt="linkedinicon" className='socialIcons'/>
                     </div>
                   </div>
                 </div>
