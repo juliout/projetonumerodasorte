@@ -100,7 +100,7 @@ export default class Email extends Component {
           autoCapitalize="none"
           placeholder={props.placeholder}
           type="text"
-          required
+          required={props.required}
           inputMode="email"
           autoComplete='off'
           value={value || ''}

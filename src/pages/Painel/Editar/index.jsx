@@ -7,6 +7,7 @@ import { useEffect, useContext, useState } from 'react'
 import { AuthContext } from '../../../contexts/auth'
 import ModalError from '../../../components/modalError'
 import { Api } from '../../../api'
+import ModalSucess from '../../../components/modalSucess'
 
 
 
@@ -15,25 +16,74 @@ export default function Editar () {
     const { usuario } = useContext(AuthContext)
 
     useEffect(()=>{
-        const token = {
-            'x-acess-token' : usuario.token,
-            'Content-Type': 'application/json',
-        }
-        async function acharLoterias() {
+        async function acharAbout() {
+            const token = {
+                'x-acess-token' : usuario.token,
+                'Content-Type': 'application/json',
+            }
             await Api.post('/alertasorte/AboutUser',[],{
                 headers: token
             }).then(response=> {
-                console.log(response.data)
                 setDados(response.data)
             })
             .catch(reponse=> ModalError('não foi possivel carregar as loterias'))
         } 
-        acharLoterias()
+        acharAbout()
 
     },[])
 
+    async function attCadastro(e) {
+        e.preventDefault()
+        let target = e.target
+        
+        
+        let gen = target.genero.value.toLowerCase()
+        if(gen) {
+            if(gen !== 'masculino' || gen !== 'feminino') {
+                return ModalError('Genero apenas Masculino ou Feminino')
+            }
+        }
+        if(target.email.value) {
+            if(target.email.value.indexOf('@') < 0) {
+                return ModalError('Email errado')
+            }
+        } 
+
+        let user = {
+            name : target.name.value,
+            genero : target.genero.value.toLowerCase(),
+            datanascimento: target.nascimento.value,
+            email: target.email.value,
+            password: target.password.value,
+            tel: target.tel.value
+        }
+
+        const token = {
+            'x-acess-token' : usuario.token,
+            'Content-Type': 'application/json',
+        }
+        await Api.post('/alertasorte/attuser', user, {
+            headers: token
+        }).then(async response=> {
+            let usuarioStorage = localStorage.getItem('userToken')
+            usuarioStorage  = JSON.parse(usuarioStorage)
+            user.name = user.name.split(' ')
+            if (user.name[0] !== usuarioStorage.name) {
+                usuarioStorage.name = user.name[0]
+                localStorage.setItem('userToken',JSON.stringify(usuarioStorage))
+            }
+            await ModalSucess('atualizado com sucesso.', ()=> {
+                setTimeout(() => {
+                    window.location.reload() 
+                 }, 2000);
+            })
+        })
+        .catch(reponse=> ModalError('não foi possivel carregar as loterias'))
+       
+    }
+
     return (
-        <Form action="" method="post" id='editarCadastro'>
+        <Form method="post" id='editarCadastro' onSubmit={(e)=>{attCadastro(e)}}>
                 <PainelLembretes>
                     <div className='topCadas'>
                         <div>
@@ -46,7 +96,7 @@ export default function Editar () {
                         </div>
                         <div>
                             <label htmlFor="">Data de Nascimento:</label>
-                            <input type="date" defaultValue={dados?dados.datanascimento : 'seu niver'} onFocus="(this.type='date')"/>  
+                            <input type="date" name='nascimento' id='nascimento' defaultValue={dados? dados.datanascimento : 'seu niver'}/>  
                         </div>
                         <div>
                             <label htmlFor="">E-mail:</label>

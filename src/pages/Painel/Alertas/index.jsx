@@ -6,6 +6,7 @@ import { useContext } from 'react'
 import { AuthContext } from '../../../contexts/auth'
 import axios from 'axios'
 import ModalError from '../../../components/modalError'
+import ModalSucess from '../../../components/modalSucess'
 
 export default function Alarm() {
 
@@ -29,11 +30,48 @@ export default function Alarm() {
 
     },[])
 
-    const TrDiv = ({value}) =>{
+    async function attDados(e){
+        e.preventDefault()
+        
+        let arrayTarget = [...e.target]
+        let newArray = []
 
+        let allLoterias = ['megasena', 'lotofacil', 'duplasena', 'quina', 'supersete', 'timemania', 'lotomania', 'diadesorte', 'federal', 'loteca', 'milionaria']
+        allLoterias = allLoterias.sort()
+        let contador = 0
+
+        allLoterias.map((elem, index)=> {
+            elem = {
+                nome: elem,
+                actived: arrayTarget[contador].checked,
+                resultado: arrayTarget[contador+1].checked,
+                aposta: arrayTarget[contador+2].checked       
+            }
+            contador += 4
+            return newArray.push(elem)
+        })
+        
+        const token = {
+            'x-acess-token' : usuario.token,
+            'Content-Type': 'application/json',
+        }
+        await Api.post('/alertasorte/attloteria',newArray,{
+            headers: token
+        }).then(async response=> {
+            await ModalSucess('Atualizado', ()=> {
+                setTimeout(() => {
+                    window.location.reload() 
+                 }, 2000);
+            })
+        })
+        .catch(reponse=> ModalError('não foi possivel carregar as loterias'))
+                    
+    }
+
+    const TrDiv = ({value}) =>{
         return (
-        <tr className='trBody'>
-            <td className='tdName'><input type="checkbox" name={value.name} id={value.name} className='inpTd' defaultChecked={value.actived} /> {value.name}</td>
+        <tr className='trBody' id={value.name}>
+            <td className='tdName'><input type="checkbox" name={value.name+'check'} id={value.name+'check'} className='inpTd' defaultChecked={value.actived} /> {value.name}</td>
             <td className='tdDia'><p>Terça, Quarta e Quinta</p></td>
             <td className='tdRadio'> 
                 <SwitchC id={value.name + '-resultado'} name={value.name + '-resultado'} actived={value.resultado.resultado}/>
@@ -51,7 +89,7 @@ export default function Alarm() {
     }
 
     return (
-        <Form method="post" id='formLoterias'>
+        <Form method="post" id='formLoterias' onSubmit={(e)=>attDados(e)}>
                 <PainelLembretes>
                     <table>
                         <thead>

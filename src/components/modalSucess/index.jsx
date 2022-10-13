@@ -14,5 +14,5 @@ export default async function ModalSucess(message, cb) {
   if(!cb) {
     return null
   }
-  cb()
+  return cb()
 }

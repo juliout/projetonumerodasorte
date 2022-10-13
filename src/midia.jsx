@@ -1,3 +1,6 @@
+import styled from "styled-components";
+
+export const MidiaDefault = styled.div`
 
 @media (max-width: 620px) {
     .divlogo>h1 {
@@ -237,3 +240,6 @@
         height: 20px !important;
     }
 }
+
+
+`
