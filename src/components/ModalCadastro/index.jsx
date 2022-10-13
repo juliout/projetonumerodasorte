@@ -28,24 +28,24 @@ export default function MCadastro({setCadastrar, form}) {
     const navigate = useNavigate()
     const sendCadastro = async (e) => {
         e.preventDefault()
-        let {name, nascimento, email, password} = e.target
+        let {name, nascimento, email, password,genero} = e.target
 
         let user = {
             name: name.value,
-            nascimento: nascimento.value,
+            datanascimento: nascimento.value,
             email: email.value,
             password: password.value,
+            genero: genero.value,
             social: form.social,
             socialContact : form.socialContact,
             loteria : form.loteria,
-            rede: 'alerta-da-sorte'
+            rede: 'alerta-da-sorte',
         }
-        console.log(user)
+        
         await Api.post('/createuser', user)
         .then(async response=> {
         })
         .catch(async response=> {
-            console.log(response.response.data.message)
             return await ModalError(response.response.data.message)
         })
         let login = {
@@ -60,7 +60,6 @@ export default function MCadastro({setCadastrar, form}) {
             return await ModalError(error.response.data.message)
         })
         if(resposta) {
-            
             await localStorage.setItem('userToken',JSON.stringify(resposta.data.user))
             await ModalSucess('Cadastrado, sendo redirecionado')
             return setTimeout(() => {

@@ -24,7 +24,7 @@ export default function Header({sendLogin}) {
     const login = {
         email: emailLogin,
         password : senhaLogin,
-        rede: 'numero-da-sorte'
+        rede: 'alerta-da-sorte'
     }
 
     function submit (e) {

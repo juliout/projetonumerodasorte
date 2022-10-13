@@ -98,6 +98,7 @@ export default class Email extends Component {
         <input
           {...props}
           autoCapitalize="none"
+          placeholder={props.placeholder}
           type="text"
           required
           inputMode="email"

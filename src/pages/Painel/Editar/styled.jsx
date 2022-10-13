@@ -44,6 +44,7 @@ export const PainelLembretes = styled.div`
 
     width: 100%;
     min-height: 200px;
+    height: auto;
 
     background-color: white;
 
@@ -57,8 +58,10 @@ export const PainelLembretes = styled.div`
     .topCadas {
         display: flex;
         justify-content: flex-start;
-        height: 60px;
-
+        min-height: 70px;
+        height: auto;
+        margin-bottom: 20px;
+        
         .inputName {
             width: 100%;
             height: 30px;
@@ -66,6 +69,10 @@ export const PainelLembretes = styled.div`
                 border-radius: 12px;
                 vertical-align: middle;
                 padding-top: 5px;
+            }
+            p{
+                position: absolute;
+                transform: translateY(15px);
             }
         }
 
@@ -76,6 +83,7 @@ export const PainelLembretes = styled.div`
             display: flex;
             flex-direction: column;
             justify-content: end;
+            margin-bottom: 5px;
 
             margin-right: auto;
             label {
@@ -101,12 +109,11 @@ export const PainelLembretes = styled.div`
         justify-content: space-around;
         height: 60px;
         width: 100%;
-        margin-top: 5px;
-
+        margin-top: 15px;
         .binput {
             width: 25%;
             max-width: 220px;
-            margin-right: 2%;
+            margin-right: 5%;
             display: flex;
             flex-direction: column;
             justify-content: end;
