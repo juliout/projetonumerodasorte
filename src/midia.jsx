@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const MidiaDefault = styled.div`
-
 @media (max-width: 620px) {
     .divlogo>h1 {
         font-size: 1rem !important;

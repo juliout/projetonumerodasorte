@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const Form = styled.form`
     width: 100%;
-    min-height: 400px;
+    min-height: 300px;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -35,6 +35,20 @@ export const Form = styled.form`
         text-decoration: underline;
         cursor: pointer;
     }
+`
+
+export const BtnCancel = styled.button`
+    
+    width: 140px;
+    height: 35px;
+    margin: 5px 0;
+    border-radius: 7px;
+    font-weight: 700;
+    font-size: 0.7rem;
+    color: #bd0505;
+    text-decoration: underline;
+    cursor: pointer;
+    background-color    
 `
 
 export const PainelLembretes = styled.div` 

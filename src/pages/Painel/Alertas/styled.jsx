@@ -6,7 +6,7 @@ export const Form = styled.form`
     height: auto;
     display: flex;
     flex-direction: column;
-    
+
     span {
         font-size: 0.7rem;
         margin-left: 5px;
@@ -23,17 +23,20 @@ export const Form = styled.form`
         box-shadow: 2px 3px 4px #00000081;
         cursor: pointer;
     }
-    .btncCadastro {
-        width: 140px;
-        height: 35px;
-        margin: 5px 0;
-        border-radius: 7px;
-        font-weight: 700;
-        font-size: 0.7rem;
-        color: #bd0505;
-        text-decoration: underline;
-        cursor: pointer;
-    }
+    
+`
+export const BtnCancel = styled.button`
+    
+    width: 140px;
+    height: 35px;
+    margin: 5px 0;
+    border-radius: 7px;
+    font-weight: 700;
+    font-size: 0.7rem;
+    color: #bd0505;
+    text-decoration: underline;
+    cursor: pointer;
+    
 `
 
 
@@ -44,7 +47,7 @@ export const PainelLembretes = styled.div`
     justify-content: center;
 
     width: 100%;
-
+    height: auto;
     background-color: white;
 
     border-radius: 0 10px 10px 10px ;

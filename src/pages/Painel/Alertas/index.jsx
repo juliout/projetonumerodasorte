@@ -1,4 +1,4 @@
-import {PainelLembretes, Form} from './styled'
+import {PainelLembretes, Form, BtnCancel} from './styled'
 import SwitchC from '../../../components/SwitchC'
 import { useEffect, useState } from 'react'
 import { Api } from '../../../api'
@@ -12,7 +12,7 @@ export default function Alarm() {
 
     const [loteriaData, setLoteriaData] = useState('')
 
-    const { usuario } = useContext(AuthContext)
+    const { usuario, cancelarCadastro } = useContext(AuthContext)
     useEffect(()=>{
         const token = {
             'x-acess-token' : usuario.token,
@@ -50,7 +50,7 @@ export default function Alarm() {
             contador += 4
             return newArray.push(elem)
         })
-        
+        console.log(newArray)
         const token = {
             'x-acess-token' : usuario.token,
             'Content-Type': 'application/json',
@@ -59,15 +59,14 @@ export default function Alarm() {
             headers: token
         }).then(async response=> {
             await ModalSucess('Atualizado', ()=> {
-                setTimeout(() => {
-                    window.location.reload() 
-                 }, 2000);
+                // setTimeout(() => {
+                //     window.location.reload() 
+                //  }, 2000);
             })
         })
         .catch(reponse=> ModalError('não foi possivel carregar as loterias'))
                     
     }
-
     const TrDiv = ({value}) =>{
         return (
         <tr className='trBody' id={value.name}>
@@ -89,6 +88,7 @@ export default function Alarm() {
     }
 
     return (
+        <>
         <Form method="post" id='formLoterias' onSubmit={(e)=>attDados(e)}>
                 <PainelLembretes>
                     <table>
@@ -115,7 +115,9 @@ export default function Alarm() {
                 </PainelLembretes>
                 <span>Você pode desativar os lembretes que não quiser receber ou editar os horários para melhor se encaixarem em sua rotina!</span>         
                 <button className='btnSalvar'>salvar</button>
-                <button className='btncCadastro'>Cancelar cadastro</button>
         </Form>
+        <BtnCancel className='btncCadastro' onClick={()=>{cancelarCadastro()}}>Cancelar cadastro</BtnCancel>
+        </>
+        
     )
 }

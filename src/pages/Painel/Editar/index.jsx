@@ -8,12 +8,12 @@ import { AuthContext } from '../../../contexts/auth'
 import ModalError from '../../../components/modalError'
 import { Api } from '../../../api'
 import ModalSucess from '../../../components/modalSucess'
-
+import { BtnCancel } from './styled'
 
 
 export default function Editar () {
     const [dados, setDados] = useState('')
-    const { usuario } = useContext(AuthContext)
+    const { usuario, cancelarCadastro } = useContext(AuthContext)
 
     useEffect(()=>{
         async function acharAbout() {
@@ -83,6 +83,7 @@ export default function Editar () {
     }
 
     return (
+        <>
         <Form method="post" id='editarCadastro' onSubmit={(e)=>{attCadastro(e)}}>
                 <PainelLembretes>
                     <div className='topCadas'>
@@ -96,7 +97,7 @@ export default function Editar () {
                         </div>
                         <div>
                             <label htmlFor="">Data de Nascimento:</label>
-                            <input type="date" name='nascimento' id='nascimento' defaultValue={dados? dados.datanascimento : 'seu niver'}/>  
+                            <input type="date" name='nascimento' id='nascimento' defaultValue={dados? dados.datanascimento : ''}/>  
                         </div>
                         <div>
                             <label htmlFor="">E-mail:</label>
@@ -134,7 +135,8 @@ export default function Editar () {
                 </PainelLembretes>
                 <span>Você pode desativar os lembretes que não quiser receber ou editar os horários para melhor se encaixarem em sua rotina!</span>         
                 <button className='btnSalvar'>salvar</button>
-                <button className='btncCadastro'>Cancelar cadastro</button>
         </Form>
+         <BtnCancel className='btncCadastro' onClick={()=>cancelarCadastro()}>Cancelar cadastro</BtnCancel>
+        </>
     )
 }

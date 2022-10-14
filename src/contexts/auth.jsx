@@ -54,8 +54,26 @@ export default function AuthProvider({ children }){
         return window.location.reload()
     }
 
-    function storageSave(data){
-        localStorage.setItem('userToken',JSON.stringify(data))
+    // function storageSave(data){
+    //     localStorage.setItem('userToken',JSON.stringify(data))
+    // }
+
+    async function cancelarCadastro(){
+        const token = {
+            'x-acess-token' : usuario.token,
+            'Content-Type': 'application/json',
+        }
+        await Api.post('/alertasorte/desativar', [],{
+            headers: token
+        }).then(async response => {
+            localStorage.removeItem('userToken')
+            await ModalSucess('Desativado', ()=> {
+                setTimeout(() => {
+                    window.location.reload() 
+                 }, 2000);
+            })
+        })
+        .catch(reponse=> ModalError('não foi possivel desativar'))
     }
 
     return(
@@ -65,6 +83,7 @@ export default function AuthProvider({ children }){
                 usuario, 
                 Login,
                 Sair,
+                cancelarCadastro
             }}>
             {children}
         </AuthContext.Provider>
