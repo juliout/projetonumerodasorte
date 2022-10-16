@@ -1,14 +1,14 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import {ModalDiv} from './modalStyled'
-import InputName from '../inputName'
-import { useNavigate } from 'react-router-dom';
+import InputName from '../../../components/inputName'
+
 
 import 'react-toastify/dist/ReactToastify.css';
-import ModalError from '../modalError'
-import ModalSucess from '../modalSucess'
-import Email from '../emailAutocompletee';
+import ModalError from '../../../components/modalError'
+import ModalSucess from '../../../components/modalSucess'
+import Email from '../../../components/emailAutocompletee';
 
-import { Api } from '../../api'
+import { Api } from '../../../api'
 
 export default function MCadastro({setCadastrar, form}) {
     const [emailC ,setEmailC]  = useState(lete())
@@ -24,8 +24,6 @@ export default function MCadastro({setCadastrar, form}) {
         e.preventDefault()
         setCadastrar(false)        
     }
-
-    const navigate = useNavigate()
     const sendCadastro = async (e) => {
         e.preventDefault()
         let {name, nascimento, email, password,genero} = e.target
@@ -44,6 +42,7 @@ export default function MCadastro({setCadastrar, form}) {
         
         await Api.post('/createuser', user)
         .then(async response=> {
+            await ModalSucess('Cadastrado')
         })
         .catch(async response=> {
             return await ModalError(response.response.data.message)
@@ -61,7 +60,7 @@ export default function MCadastro({setCadastrar, form}) {
         })
         if(resposta) {
             await localStorage.setItem('userToken',JSON.stringify(resposta.data.user))
-            await ModalSucess('Cadastrado, sendo redirecionado')
+            await ModalSucess('sendo redirecionado')
             return setTimeout(() => {
                window.location.reload() 
             }, 2000);

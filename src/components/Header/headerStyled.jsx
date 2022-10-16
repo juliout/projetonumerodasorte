@@ -49,6 +49,10 @@ export const HeaderDiv = styled.header`
             color: black;
             font-weight: 700;
             border: none;
+            cursor: pointer;
+            :hover {
+                background-color: white;
+            }
         }
         .iconH {
             width: 20px;

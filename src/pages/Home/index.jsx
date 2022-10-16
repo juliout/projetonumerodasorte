@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import MCadastro from '../../components/ModalCadastro'
+import MCadastro from './ModalCadastro/index'
 import BtnFlip from '../../components/BtnFlip'
 import LiPerguntas from '../../components/LiPerguntas'
 import Modal from '../../components/modal'
@@ -215,6 +215,7 @@ export default function Home(){
                 </div>
                 
             </BannerDiv>
+            
             <ComoFuncionaDiv>
               <div className="funcionaMain">
                 <div className='funcionaTop'>
@@ -237,6 +238,7 @@ export default function Home(){
                 </div>
               </div>        
             </ComoFuncionaDiv>
+
             <PerguntasDiv>
               <div className="perguntasMain">
                 <h1>Perguntas Frequentes</h1>
@@ -260,6 +262,7 @@ export default function Home(){
                 </div>
               </div>
             </PerguntasDiv>
+
             <IndicarBannerDiv bg={indicarbg}>
                 <div className="indicaMain">
                 <div className="indicarLeft">
@@ -271,6 +274,7 @@ export default function Home(){
                 </div>
                 </div>
             </IndicarBannerDiv>
+
             <PerguntasDiv>
                 <div className="perguntasMain">
                   <h1>Perguntas Frequentes</h1>
@@ -294,6 +298,7 @@ export default function Home(){
                   </div>
                 </div>
             </PerguntasDiv>
+
             <RestInfoDiv>
               <div className="restMain">
                 <div className="restTop">
