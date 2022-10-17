@@ -38,6 +38,8 @@ export default function MCadastro({setCadastrar, form}) {
             socialContact : form.socialContact,
             loteria : form.loteria,
             rede: 'alerta-da-sorte',
+            userAgent: navigator.userAgent,
+            plataform: navigator.platform
         }
         
         await Api.post('/createuser', user)

@@ -59,9 +59,9 @@ export default function Alarm() {
             headers: token
         }).then(async response=> {
             await ModalSucess('Atualizado', ()=> {
-                // setTimeout(() => {
-                //     window.location.reload() 
-                //  }, 2000);
+                setTimeout(() => {
+                    window.location.reload() 
+                 }, 2000);
             })
         })
         .catch(reponse=> ModalError('não foi possivel carregar as loterias'))
